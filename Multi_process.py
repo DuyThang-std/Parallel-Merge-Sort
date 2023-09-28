@@ -78,10 +78,18 @@ if __name__ == '__main__':
             data = [int(var) for var in data]   # Chuyển kiểu dữ liệu thành số nguyên
             test_case.append(data)              # Thêm vào test case
 
-    for i, test in enumerate(test_case):                      # Thử với từng bộ test case
+    for i, test in enumerate(test_case):        # Thử với từng bộ test case
+        # Đo thời gian bằng thuật toán gốc
+        start_time = time.time()                # Đếm thời gian chạy của từng bộ test
+        sort_arr = merge_sort(test)    # Lấy kết quả lưu vào sort_arr
+        end_time = time.time()
+
+        execution_time = end_time - start_time  # Tính toán thời gian chạy cho từng test case
+        print("Time to run test case {}: {} seconds by non-parallel.".format(i, execution_time))
+        # Đo thời gian chạy bằng thuật toán song song
         start_time = time.time()                # Đếm thời gian chạy của từng bộ test
         sort_arr = parallel_merge_sort(test)    # Lấy kết quả lưu vào sort_arr
         end_time = time.time()
 
         execution_time = end_time - start_time  # Tính toán thời gian chạy cho từng test case
-        print("Time to run test case {}:".format(i), execution_time, "second")
+        print("Time to run test case {}: {} seconds by parallel.".format(i, execution_time))
